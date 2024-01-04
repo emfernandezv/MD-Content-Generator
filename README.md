@@ -5,7 +5,8 @@ MD Content Generator is a sql script that allows to generate MD file content bas
 The scripts uses as source of truth a table named PMSctructure 
 
 # Development Environment
-- SQL
+- SQL Server Management Studio 15
+- Microsoft SQL Server 2019 (RTM-CU21) (KB5025808) - 15.0.4316.3 (X64)
 
 # Future Work
 - Add the automatic file generation to the loop to make it create the files on demand.
