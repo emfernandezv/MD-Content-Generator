@@ -155,8 +155,6 @@ insert into PMStructure VALUES ('vw_ODBC_actv_ClaimRun','TestMode','bit','Was th
 insert into PMStructure VALUES ('vw_ODBC_actv_ClaimRun','ClaimCount','int','Number of claims in the run');
 insert into PMStructure VALUES ('vw_ODBC_actv_ClaimRun','IsDemand','bit','0 = No, 1 = Yes');
 insert into PMStructure VALUES ('vw_ODBC_actv_ClaimRun','IsTrial','bit','0 = No, 1 = Yes');
-![image](https://github.com/emfernandezv/MD-Content-Generator/assets/36644789/22ebc80f-09e4-4129-8921-b3c82b51221e)
-
 
 ```
 
