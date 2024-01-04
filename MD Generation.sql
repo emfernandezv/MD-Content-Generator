@@ -1,17 +1,9 @@
 /*
-Source of Data:
-create table PMStructure(
-tableName varchar(100),
-columnName varchar(100),
-dataType varchar(100),
-description varchar(6000)
-)
+Created by: Eduardo Fernandez
+Date: 01/04/2024
+email: eduardo15191@gmail.com
 
-to do in excel
-
-=CONCAT("insert into PMStructure VALUES ('",A2,"','",B2,"','",C2,"','",D2,"');")
-
-replicate table names on blank spaces
+The  script detects the tablenames on the description field and replaces it with a MarkDown link to make it interactive. In this case, names starts with "vw_ODBC_", the script gets the whole word (no matter the length). 
 
 */
 create table #listOfTables
@@ -37,6 +29,7 @@ select (select distinct l.ID from #listOfTables l where l.tableName = PM.tableNa
 		*
 from PMStructure PM;
 
+-- Creating a #work table to find the original word (tablename) and the MD link
 select distinct  SUBSTRING(description, CHARINDEX('vw_ODBC_', description), 
                  CHARINDEX(' ', description + ' ', CHARINDEX('vw_ODBC_', description)) - CHARINDEX('vw_ODBC_', description)) AS WORD,
 	   '['+SUBSTRING(description, CHARINDEX('vw_ODBC_', description), 
@@ -51,6 +44,7 @@ from #WorkList
 where SUBSTRING(description, CHARINDEX('vw_ODBC_', description), 
                  CHARINDEX(' ', description + ' ', CHARINDEX('vw_ODBC_', description)) - CHARINDEX('vw_ODBC_', description)) like 'vw_ODBC_%'
 
+--replacing the word with the MD link	
 UPDATE  WL
 SET WL.description = REPLACE(WL.description,W.word, W.NEW_WORD)
 FROM #WorkList WL,
@@ -59,10 +53,7 @@ where WL.partitionID = W.PartitionID
 and WL.ID = w.ID;
 
 -- GENERATION START
-DECLARE @id int = 1,
-	 @Text  VARCHAR(max),
-	 @FileName  varchar(100),
-	 @Cmd  VARCHAR(100);
+DECLARE @id int = 1
 
 WHILE ((select count(*) from #listOfTables where id = @id) > 0)
 BEGIN
@@ -88,6 +79,8 @@ BEGIN
 	insert into #temp values('[< Back to Index](../README.MD)');
 
 	select * from #temp;
+
+       --here you would need to add the code to export each MD file on a defined destination.
 
 	drop table #temp;
 	set @id = @id + 1;
