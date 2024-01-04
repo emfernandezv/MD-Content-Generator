@@ -1,7 +1,16 @@
-# MD-Content-Generator
-Quick script to generate MD content from SQL
+# MD-Content-Generator Overview
+
+MD Content Generator is a sql script that allows to generate MD file content based on a table PMSctructure. The script creates a header and a table based on the data. It also modifies dynamically the content of the description field by search a keyword to get whole words, alter it and replacing it on the text.
 
 The scripts uses as source of truth a table named PMSctructure 
+
+# Development Environment
+- SQL
+
+# Future Work
+- Add the automatic file generation to the loop to make it create the files on demand.
+
+#To recreate the environment
 
 ```sql
 
