@@ -5,7 +5,6 @@ The scripts uses as source of truth a table named PMSctructure
 
 ```sql
 
-Source of Data:
 create table PMStructure(
 tableName varchar(100),
 columnName varchar(100),
